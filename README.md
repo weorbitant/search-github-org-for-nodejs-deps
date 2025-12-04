@@ -19,6 +19,7 @@ This tool was created in response to a [critical security vulnerability in React
 
 - [GitHub CLI (`gh`)](https://cli.github.com/) - authenticated
 - `jq` - JSON processor
+- Optional [`GNU parallel`](https://www.gnu.org/software/parallel/) - run jobs in parallel (great for large organizations) 
 
 ## 🔎 Default Dependencies
 
