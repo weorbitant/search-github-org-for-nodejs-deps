@@ -28,6 +28,9 @@ By default, the script searches for the following dependencies:
 - `react-server-dom-turbopack`
 - `react-server-dom-webpack`
 - `next`
+- `rwsdk`
+- `waku`
+- `@vitejs/plugin-rsc`
 
 ## 🚀 Usage
 
