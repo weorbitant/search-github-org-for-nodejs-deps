@@ -163,18 +163,32 @@ main() {
     echo "📊 Found ${total_repos} repositories in ${org}"
     echo ""
 
-    # Process each repository
+    # Process repositories (parallel if possible)
     local repos_with_package_json=()
-    local current=0
 
-    while IFS= read -r repo; do
-        ((current++)) || true
-        printf "\r⏳ [%d/%d] Checking: %-50s" "$current" "$total_repos" "$repo"
+    echo "⚡ Checking repositories for package.json..."
+    echo ""
 
-        if result=$(check_and_download_package_json "$org" "$repo" "$OUTPUT_DIR"); then
-            repos_with_package_json+=("$result")
-        fi
-    done <<< "$repos"
+    export -f check_and_download_package_json
+    export OUTPUT_DIR
+
+    if command -v parallel &> /dev/null; then
+        echo "🚀 Using GNU parallel for speed!"
+        echo "$repos" | parallel -j 10 --bar \
+            "check_and_download_package_json \"$org\" {} \"$OUTPUT_DIR\"" \
+            | tee >(while read -r repo; do repos_with_package_json+=("$repo"); done)
+    else
+        echo "⏳ GNU parallel not found — running sequentially"
+        local current=0
+        while IFS= read -r repo; do
+            ((current++)) || true
+            printf "\r⏳ [%d/%d] Checking: %-50s" "$current" "$total_repos" "$repo"
+
+            if result=$(check_and_download_package_json "$org" "$repo" "$OUTPUT_DIR"); then
+                repos_with_package_json+=("$result")
+            fi
+        done <<< "$repos"
+    fi
 
     echo ""
     echo ""
