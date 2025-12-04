@@ -1,7 +1,9 @@
 # 🔍 Search GitHub Org for Node.js Dependencies
 
 - [🔍 Search GitHub Org for Node.js Dependencies](#-search-github-org-for-nodejs-dependencies)
+  - [⚠️ Context](#️-context)
   - [📋 Prerequisites](#-prerequisites)
+  - [🔎 Default Dependencies](#-default-dependencies)
   - [🚀 Usage](#-usage)
   - [💡 Examples](#-examples)
   - [📤 Output](#-output)
@@ -9,10 +11,23 @@
 
 Scan all repositories in a GitHub organization for specific Node.js dependencies.
 
+## ⚠️ Context
+
+This tool was created in response to a [critical security vulnerability in React Server Components](https://react.dev/blog/2025/12/03/critical-security-vulnerability-in-react-server-components) disclosed on December 3, 2025. The vulnerability affects applications using React Server Components with certain bundler integrations.
+
 ## 📋 Prerequisites
 
 - [GitHub CLI (`gh`)](https://cli.github.com/) - authenticated
 - `jq` - JSON processor
+
+## 🔎 Default Dependencies
+
+By default, the script searches for the following dependencies:
+
+- `react-server-dom-parcel`
+- `react-server-dom-turbopack`
+- `react-server-dom-webpack`
+- `next`
 
 ## 🚀 Usage
 
