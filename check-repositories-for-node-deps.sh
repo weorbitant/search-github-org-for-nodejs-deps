@@ -8,6 +8,7 @@ DEPENDENCIES_TO_FIND=(
     "react-server-dom-parcel"
     "react-server-dom-turbopack"
     "react-server-dom-webpack"
+    "next"
 )
 
 # Display usage information
