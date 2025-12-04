@@ -9,6 +9,9 @@ DEPENDENCIES_TO_FIND=(
     "react-server-dom-turbopack"
     "react-server-dom-webpack"
     "next"
+    "rwsdk"
+    "waku"
+    "@vitejs/plugin-rsc"
 )
 
 # Display usage information
